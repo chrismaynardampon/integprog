@@ -16,7 +16,7 @@
     <price>699.99</price>
     <quantity>30</quantity>
     <date>2024-06-06</date>
-    <picture>gpu_rtx_3080.jpg</picture>
+    <picture>two.jpg</picture>
   </product>
   <product>
     <pid>3</pid>
@@ -25,7 +25,7 @@
     <price>349.99</price>
     <quantity>20</quantity>
     <date>2024-06-06</date>
-    <picture>motherboard_asus_z590e.jpg</picture>
+    <picture>three.png</picture>
   </product>
   <product>
     <pid>4</pid>
@@ -34,7 +34,7 @@
     <price>129.99</price>
     <quantity>100</quantity>
     <date>2024-06-06</date>
-    <picture>ram_corsair_vengeance_rgb_pro.jpg</picture>
+    <picture>four.jpg</picture>
   </product>
   <product>
     <pid>5</pid>
@@ -43,7 +43,7 @@
     <price>199.99</price>
     <quantity>40</quantity>
     <date>2024-06-06</date>
-    <picture>ssd_samsung_970_evo_plus_1tb.jpg</picture>
+    <picture>five.jpg</picture>
   </product>
   <product>
     <pid>6</pid>
@@ -52,7 +52,7 @@
     <price>149.99</price>
     <quantity>15</quantity>
     <date>2024-06-06</date>
-    <picture>psu_evga_supernova_850_g5.jpg</picture>
+    <picture>six.jpg</picture>
   </product>
   <product>
     <pid>7</pid>
@@ -61,7 +61,7 @@
     <price>69.99</price>
     <quantity>25</quantity>
     <date>2024-06-06</date>
-    <picture>case_nzxt_h510.jpg</picture>
+    <picture>seven.jpg</picture>
   </product>
   <product>
     <pid>8</pid>
@@ -70,7 +70,7 @@
     <price>159.99</price>
     <quantity>10</quantity>
     <date>2024-06-06</date>
-    <picture>cooler_corsair_h100i_rgb_platinum.jpg</picture>
+    <picture>eight.jpg</picture>
   </product>
   <product>
     <pid>9</pid>
@@ -79,7 +79,7 @@
     <price>699.99</price>
     <quantity>5</quantity>
     <date>2024-06-06</date>
-    <picture>monitor_asus_rog_swift_pg279q.jpg</picture>
+    <picture>nine.png</picture>
   </product>
   <product>
     <pid>10</pid>
@@ -88,6 +88,6 @@
     <price>129.99</price>
     <quantity>10</quantity>
     <date>2024-06-06</date>
-    <picture>keyboard_razer_blackwidow_elite.jpg</picture>
+    <picture>ten.jpg</picture>
   </product>
 </productStore>
