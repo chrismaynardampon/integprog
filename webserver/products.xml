@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<productStore>
+  <product>
+    <pid>1</pid>
+    <pcat>CPU</pcat>
+    <pdesc>Intel Core i9-10900K</pdesc>
+    <price>499.99</price>
+    <quantity>50</quantity>
+    <date>2024-06-06</date>
+    <picture>one.png</picture>
+  </product>
+  <product>
+    <pid>2</pid>
+    <pcat>GPU</pcat>
+    <pdesc>Nvidia GeForce RTX 3080</pdesc>
+    <price>699.99</price>
+    <quantity>30</quantity>
+    <date>2024-06-06</date>
+    <picture>gpu_rtx_3080.jpg</picture>
+  </product>
+  <product>
+    <pid>3</pid>
+    <pcat>Motherboard</pcat>
+    <pdesc>ASUS ROG Strix Z590-E Gaming</pdesc>
+    <price>349.99</price>
+    <quantity>20</quantity>
+    <date>2024-06-06</date>
+    <picture>motherboard_asus_z590e.jpg</picture>
+  </product>
+  <product>
+    <pid>4</pid>
+    <pcat>RAM</pcat>
+    <pdesc>Corsair Vengeance RGB Pro 16GB (2x8GB) DDR4 3200MHz</pdesc>
+    <price>129.99</price>
+    <quantity>100</quantity>
+    <date>2024-06-06</date>
+    <picture>ram_corsair_vengeance_rgb_pro.jpg</picture>
+  </product>
+  <product>
+    <pid>5</pid>
+    <pcat>Storage</pcat>
+    <pdesc>Samsung 970 EVO Plus 1TB NVMe M.2 Internal SSD</pdesc>
+    <price>199.99</price>
+    <quantity>40</quantity>
+    <date>2024-06-06</date>
+    <picture>ssd_samsung_970_evo_plus_1tb.jpg</picture>
+  </product>
+  <product>
+    <pid>6</pid>
+    <pcat>PSU</pcat>
+    <pdesc>EVGA SuperNOVA 850 G5, 80 Plus Gold 850W</pdesc>
+    <price>149.99</price>
+    <quantity>15</quantity>
+    <date>2024-06-06</date>
+    <picture>psu_evga_supernova_850_g5.jpg</picture>
+  </product>
+  <product>
+    <pid>7</pid>
+    <pcat>Case</pcat>
+    <pdesc>NZXT H510 Compact ATX Mid-Tower Case</pdesc>
+    <price>69.99</price>
+    <quantity>25</quantity>
+    <date>2024-06-06</date>
+    <picture>case_nzxt_h510.jpg</picture>
+  </product>
+  <product>
+    <pid>8</pid>
+    <pcat>Cooler</pcat>
+    <pdesc>Corsair Hydro Series H100i RGB Platinum 240mm Liquid CPU Cooler</pdesc>
+    <price>159.99</price>
+    <quantity>10</quantity>
+    <date>2024-06-06</date>
+    <picture>cooler_corsair_h100i_rgb_platinum.jpg</picture>
+  </product>
+  <product>
+    <pid>9</pid>
+    <pcat>Monitor</pcat>
+    <pdesc>ASUS ROG Swift PG279Q 27" 1440P Gaming Monitor</pdesc>
+    <price>699.99</price>
+    <quantity>5</quantity>
+    <date>2024-06-06</date>
+    <picture>monitor_asus_rog_swift_pg279q.jpg</picture>
+  </product>
+  <product>
+    <pid>10</pid>
+    <pcat>Keyboard</pcat>
+    <pdesc>Razer BlackWidow Elite Mechanical Gaming Keyboard</pdesc>
+    <price>129.99</price>
+    <quantity>10</quantity>
+    <date>2024-06-06</date>
+    <picture>keyboard_razer_blackwidow_elite.jpg</picture>
+  </product>
+</productStore>

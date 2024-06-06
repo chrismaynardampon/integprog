@@ -56,7 +56,11 @@ document.Load(@"C:\Users\heart\OneDrive\Desktop\webserver\products.xml");
 string html = "<table border='1'><tr><th>ID</th><th>Category</th><th>Description</th><th>Price</th><th>Quantity</th><th>Stock-In-Date</th><th>Picture</th></tr>";
     foreach(var cell in data)
     {
-        html += "<tr><td>" + cell[0] + "</td><td>" + cell[1] + "</td><td>" + cell[2] + "</td><td>" + cell[3] + "</td><td>" + cell[4] + "</td><td>" + cell[5] + "</td><td>" + cell[6] + "</td></tr>";
+        
+	
+	html += "<tr><td>" + cell[0] + "</td><td>" + cell[1] + "</td><td>" + cell[2] + "</td><td>" + cell[3] + "</td><td>" + cell[4] + "</td><td>" + cell[5] + "</td><td><img src='C:\\Users\\heart\\OneDrive\\Desktop\\webserver\\pics\\" + cell[6] + "' style='height: 100px; width: 100px;'></td></tr>";
+
+
 	
 	XmlNode root = document.DocumentElement;
 
