@@ -1,0 +1,1 @@
+SELECT CONCAT('<products>', GROUP_CONCAT(CONCAT('<product>','<pid>', pid, '</pid>','<pcategory>', pcat, '</pcategory>','<pdesc>', pdesc, '</pdesc>','<price>', price, '</price>','<stock_quantity>', quantity, '</stock_quantity>','<stock_in_date>', sdate, '</stock_in_date>','<picture>', picture, '</picture>','</product>') SEPARATOR ''),'</products>') AS xmloutput FROM products;

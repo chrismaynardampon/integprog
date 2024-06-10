@@ -1,93 +1,101 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<productStore>
+<products>
   <product>
     <pid>1</pid>
-    <pcat>CPU</pcat>
+    <pcategory>CPU</pcategory>
     <pdesc>Intel Core i9-10900K</pdesc>
     <price>499.99</price>
-    <quantity>50</quantity>
-    <date>2024-06-06</date>
+    <stock_quantity>50</stock_quantity>
+    <stock_in_date>2024-06-06</stock_in_date>
     <picture>one.png</picture>
   </product>
   <product>
     <pid>2</pid>
-    <pcat>GPU</pcat>
+    <pcategory>GPU</pcategory>
     <pdesc>Nvidia GeForce RTX 3080</pdesc>
     <price>699.99</price>
-    <quantity>30</quantity>
-    <date>2024-06-06</date>
+    <stock_quantity>30</stock_quantity>
+    <stock_in_date>2024-06-06</stock_in_date>
     <picture>two.jpg</picture>
   </product>
   <product>
     <pid>3</pid>
-    <pcat>Motherboard</pcat>
+    <pcategory>Motherboard</pcategory>
     <pdesc>ASUS ROG Strix Z590-E Gaming</pdesc>
     <price>349.99</price>
-    <quantity>20</quantity>
-    <date>2024-06-06</date>
+    <stock_quantity>20</stock_quantity>
+    <stock_in_date>2024-06-06</stock_in_date>
     <picture>three.png</picture>
   </product>
   <product>
     <pid>4</pid>
-    <pcat>RAM</pcat>
+    <pcategory>RAM</pcategory>
     <pdesc>Corsair Vengeance RGB Pro 16GB (2x8GB) DDR4 3200MHz</pdesc>
     <price>129.99</price>
-    <quantity>100</quantity>
-    <date>2024-06-06</date>
+    <stock_quantity>100</stock_quantity>
+    <stock_in_date>2024-06-06</stock_in_date>
     <picture>four.jpg</picture>
   </product>
   <product>
     <pid>5</pid>
-    <pcat>Storage</pcat>
+    <pcategory>Storage</pcategory>
     <pdesc>Samsung 970 EVO Plus 1TB NVMe M.2 Internal SSD</pdesc>
     <price>199.99</price>
-    <quantity>40</quantity>
-    <date>2024-06-06</date>
+    <stock_quantity>40</stock_quantity>
+    <stock_in_date>2024-06-06</stock_in_date>
     <picture>five.jpg</picture>
   </product>
   <product>
     <pid>6</pid>
-    <pcat>PSU</pcat>
+    <pcategory>PSU</pcategory>
     <pdesc>EVGA SuperNOVA 850 G5, 80 Plus Gold 850W</pdesc>
     <price>149.99</price>
-    <quantity>15</quantity>
-    <date>2024-06-06</date>
+    <stock_quantity>15</stock_quantity>
+    <stock_in_date>2024-06-06</stock_in_date>
     <picture>six.jpg</picture>
   </product>
   <product>
     <pid>7</pid>
-    <pcat>Case</pcat>
+    <pcategory>Case</pcategory>
     <pdesc>NZXT H510 Compact ATX Mid-Tower Case</pdesc>
     <price>69.99</price>
-    <quantity>25</quantity>
-    <date>2024-06-06</date>
+    <stock_quantity>25</stock_quantity>
+    <stock_in_date>2024-06-06</stock_in_date>
     <picture>seven.jpg</picture>
   </product>
   <product>
     <pid>8</pid>
-    <pcat>Cooler</pcat>
+    <pcategory>Cooler</pcategory>
     <pdesc>Corsair Hydro Series H100i RGB Platinum 240mm Liquid CPU Cooler</pdesc>
     <price>159.99</price>
-    <quantity>10</quantity>
-    <date>2024-06-06</date>
+    <stock_quantity>10</stock_quantity>
+    <stock_in_date>2024-06-06</stock_in_date>
     <picture>eight.jpg</picture>
   </product>
   <product>
     <pid>9</pid>
-    <pcat>Monitor</pcat>
+    <pcategory>Monitor</pcategory>
     <pdesc>ASUS ROG Swift PG279Q 27" 1440P Gaming Monitor</pdesc>
     <price>699.99</price>
-    <quantity>5</quantity>
-    <date>2024-06-06</date>
+    <stock_quantity>5</stock_quantity>
+    <stock_in_date>2024-06-06</stock_in_date>
     <picture>nine.png</picture>
   </product>
   <product>
     <pid>10</pid>
-    <pcat>Keyboard</pcat>
+    <pcategory>Keyboard</pcategory>
     <pdesc>Razer BlackWidow Elite Mechanical Gaming Keyboard</pdesc>
     <price>129.99</price>
-    <quantity>10</quantity>
-    <date>2024-06-06</date>
+    <stock_quantity>10</stock_quantity>
+    <stock_in_date>2024-06-06</stock_in_date>
     <picture>ten.jpg</picture>
   </product>
-</productStore>
+  <product>
+    <pid>1</pid>
+    <pcategory>New</pcategory>
+    <pdesc>asd</pdesc>
+    <price>asd</price>
+    <stock_quantity>asd</stock_quantity>
+    <stock_in_date>asd</stock_in_date>
+    <picture>one.png</picture>
+  </product>
+</products>
