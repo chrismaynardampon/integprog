@@ -6,10 +6,10 @@
 package exer2;
 
 import java.io.PrintWriter;
-import java.sql.DriverManager;
 import java.sql.Connection;
-import java.sql.Statement;
+import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.Statement;
 
 
 
@@ -55,9 +55,9 @@ public class DBConnect {
         }
     }
     
-    public void deleteData(String id, String pcat, String pdesc, String price, String quantity, String sdate, String pic){
+    public void deleteData(String id){
         try{
-        String query = "delete from products where pid= "+id;
+        String query = "delete from products where pid= '"+id+"'";
         con.createStatement().executeUpdate(query);
         getData("products");
         }
