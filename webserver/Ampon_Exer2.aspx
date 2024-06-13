@@ -34,12 +34,13 @@
 	private void Update(object sender, EventArgs e){
 	ProcessStartInfo info = new ProcessStartInfo();
 	info.FileName = @"C:\Users\heart\Downloads\ikvmbin-8.1.5717.0\ikvm-8.1.5717.0\bin\exer2.exe";
-	info.Arguments = "insert a b c d f g";
+	info.Arguments = "Update a b c d f g";
 	info.WindowStyle = ProcessWindowStyle.Normal;
 	info.UseShellExecute = false;
 	info.RedirectStandardOutput = true;
 	Process pro = Process.Start(info);
 	pro.WaitForExit();
+	Show(sender, e)
 	}
 
 	private void Delete(object sender, EventArgs e){

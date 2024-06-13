@@ -44,6 +44,28 @@ public class DBConnect {
         }
     }
     
+    public void updateData(String id, String pcat, String pdesc, String price, String quantity, String sdate, String pic){
+        try{
+        String query = "update products set pcat='"+pcat+"', pdesc='"+pdesc+"', price='"+price+"', quantity='"+quantity+"', sdate='"+sdate+"'";
+        con.createStatement().executeUpdate(query);
+        getData("products");
+        }
+        catch (Exception ex){
+            System.out.println(ex);
+        }
+    }
+    
+    public void deleteData(String id, String pcat, String pdesc, String price, String quantity, String sdate, String pic){
+        try{
+        String query = "delete from products where pid= "+id;
+        con.createStatement().executeUpdate(query);
+        getData("products");
+        }
+        catch (Exception ex){
+            System.out.println(ex);
+        }
+    }
+    
     public void getData(String a){
         PrintWriter writer;
         try{
