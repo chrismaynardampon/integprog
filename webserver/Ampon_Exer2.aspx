@@ -34,7 +34,7 @@
 	private void Update(object sender, EventArgs e){
 	ProcessStartInfo info = new ProcessStartInfo();
 	info.FileName = @"C:\Users\heart\Downloads\ikvmbin-8.1.5717.0\ikvm-8.1.5717.0\bin\exer2.exe";
-	info.Arguments = "Update a b c d f g";
+	info.Arguments = "Update " +pid.Value+" "+pcat.Value+" "+pdesc.Value+" "+price.Value+" "+quantity.Value+" "+sdate.Value+" "+"hearteu";
 	info.WindowStyle = ProcessWindowStyle.Normal;
 	info.UseShellExecute = false;
 	info.RedirectStandardOutput = true;
@@ -46,12 +46,13 @@
 	private void Delete(object sender, EventArgs e){
 	ProcessStartInfo info = new ProcessStartInfo();
 	info.FileName = @"C:\Users\heart\Downloads\ikvmbin-8.1.5717.0\ikvm-8.1.5717.0\bin\exer2.exe";
-	info.Arguments = "insert a b c";
+	info.Arguments = "Delete " + pid.Value;
 	info.WindowStyle = ProcessWindowStyle.Normal;
 	info.UseShellExecute = false;
 	info.RedirectStandardOutput = true;
 	Process pro = Process.Start(info);
 	pro.WaitForExit();
+	Show(sender, e)
 	}
 
 	private void Show(object sender, EventArgs e){
@@ -76,19 +77,14 @@
 <html>
 	<head></head>
 	<body>
+		<h2>Exer 2</h2>
 		<form runat="server">
-			<div><label><strong>Enter Product ID</strong></label>
-			<input type="text" id="pid" runat="server"/> </div>
-			<div><label><strong>Enter Product Category</strong></label>
-			<input type="text" id="pcat" runat="server"/> </div>
-			<div><label><strong>Enter Product Description</strong></label>
-			<input type="text" id="pdesc" runat="server"/> </div>
-			<div><label><strong>Enter Product Price</strong></label>
-			<input type="text" id="price" runat="server"/> </div>
-			<div><label><strong>Enter Quantity</strong></label>
-			<input type="text" id="quantity" runat="server"/> </div>
-			<div><label><strong>Enter Stock-In Date</strong></label>
-			<input type="text" id="sdate" runat="server"/> </div>
+			<div><label><strong>Enter Product ID</strong></label><input type="text" id="pid" runat="server"/></div>
+			<div><label><strong>Enter Product Category</strong></label><input type="text" id="pcat" runat="server"/> </div>
+			<div><label><strong>Enter Product Description</strong></label><input type="text" id="pdesc" runat="server"/> </div>
+			<div><label><strong>Enter Product Price</strong></label><input type="text" id="price" runat="server"/> </div>
+			<div><label><strong>Enter Quantity</strong></label><input type="text" id="quantity" runat="server"/> </div>
+			<div><label><strong>Enter Stock-In Date</strong></label><input type="text" id="sdate" runat="server"/> </div>
 			
 			<input runat="server" id="btn_show" type="submit" value="Show data" OnServerClick="Show"/>
 			<input runat="server" id="btn_insert" type="submit" value="Insert data" OnServerClick="Insert"/>
@@ -96,5 +92,7 @@
 			<input runat="server" id="btn_delete" type="submit" value="Delete data" OnServerClick="Delete"/>
 			<div id="ResultDiv" runat="server"></div>
 		</form>
+		<br><br>
+		<div><a href="http://localhost/">Back</a></div>
 	</body>
 </html>
