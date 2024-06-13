@@ -5,6 +5,7 @@
  */
 package exer2;
 
+
 /**
  *
  * @author heart
@@ -17,7 +18,7 @@ public class Exer2 {
     public static void main(String[] args) {
         DBConnect a = new DBConnect();
         if ("Insert".equals(args[0])){
-            a.insertData(args[1],args[2],args[3]);
+            a.insertData(args[1],args[2],args[3],args[4],args[5],args[6],args[7]);
         }else{
             a.getData(args[0]);
         }

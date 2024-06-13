@@ -7,7 +7,12 @@ package exer2;
 
 import java.io.PrintWriter;
 import java.sql.DriverManager;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.Statement;
+import java.sql.ResultSet;
+
+
+
 /**
  *
  * @author heart
@@ -20,7 +25,7 @@ public class DBConnect {
     public DBConnect(){
         try{
             Class.forName("com.mysql.jdbc.Driver");
-             con = DriverManager.getConnection("jdbc:mysql://10.0.2.15:3306/exer2?zeroDateTimeBehavior=convertToNull","root","root");
+             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/testdb?zeroDateTimeBehavior=convertToNull","root","root");
             st = con.createStatement();
         }
         catch(Exception ex){
@@ -28,8 +33,15 @@ public class DBConnect {
         }
     }
     
-    public void insertData(String a, String b, String c){
-        System.out.println("perform insert query");
+    public void insertData(String id, String pcat, String pdesc, String price, String quantity, String sdate, String pic){
+        try{
+        String query = "insert into products values('"+id+"','"+pcat+"','"+pdesc+"','"+price+"','"+quantity+"','"+sdate+"','"+pic+"')";
+        con.createStatement().executeUpdate(query);
+        getData("products");
+        }
+        catch (Exception ex){
+            System.out.println(ex);
+        }
     }
     
     public void getData(String a){
