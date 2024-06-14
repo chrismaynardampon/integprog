@@ -46,7 +46,7 @@ public class DBConnect {
     
     public void updateData(String id, String pcat, String pdesc, String price, String quantity, String sdate, String pic){
         try{
-        String query = "update products set pcat='"+pcat+"', pdesc='"+pdesc+"', price='"+price+"', quantity='"+quantity+"', sdate='"+sdate+"'";
+        String query = "update products set pcat='"+pcat+"', pdesc='"+pdesc+"', price='"+price+"', quantity='"+quantity+"', sdate='"+sdate+"' where pid='"+id+"'";
         con.createStatement().executeUpdate(query);
         getData("products");
         }
