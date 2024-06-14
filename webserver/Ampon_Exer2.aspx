@@ -40,7 +40,7 @@
 	info.RedirectStandardOutput = true;
 	Process pro = Process.Start(info);
 	pro.WaitForExit();
-	Show(sender, e)
+	Show(sender, e);
 	}
 
 	private void Delete(object sender, EventArgs e){
@@ -52,7 +52,7 @@
 	info.RedirectStandardOutput = true;
 	Process pro = Process.Start(info);
 	pro.WaitForExit();
-	Show(sender, e)
+	Show(sender, e);
 	}
 
 	private void Show(object sender, EventArgs e){
