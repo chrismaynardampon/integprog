@@ -94,7 +94,7 @@ public class Exer3 {
 
     public void insert_category(String category){
         try{
-            String query = "insert into products (pcat) values ('" + category +"')";
+            String query = "insert into products (pid, pcat, pdesc, price, quantity, sdate) values ('', '" + category +"','','','','')";
             con.createStatement().executeUpdate(query);
         }
         catch(Exception ex){
