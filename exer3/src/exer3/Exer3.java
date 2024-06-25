@@ -125,15 +125,9 @@ public class Exer3 {
         }
     }
     
-    public void delete_products(String pid){
+    public void delete_products(String pid, String pcat){
         try{
-            String query;
-            if (pid.equals(" ")){
-                query = "delete from products where pid=' '";
-            }
-            else{
-                query = "delete from products where pid='" + pid + "'";
-            }
+            String query = "delete from products where pid='" + pid + "' and pcat='"+pcat+"'";
             
             con.createStatement().executeUpdate(query);
         }
