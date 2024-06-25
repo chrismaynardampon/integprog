@@ -94,7 +94,7 @@ public class Exer3 {
 
     public void insert_category(String category){
         try{
-            String query = "insert into products (pid, pcat, pdesc, price, quantity, sdate) values ('','" + category +"','','','','')";
+            String query = "insert into products values (' ','" + category +"',' ',' ',' ',' ',' ')";
             con.createStatement().executeUpdate(query);
         }
         catch(Exception ex){
@@ -105,7 +105,7 @@ public class Exer3 {
     
      public void insert_products(String pid, String pcat, String pdesc, String price, String quantity, String sdate){
         try{
-            String query = "insert into products (pid, pcat, pdesc, price, quantity, sdate) VALUES ('"+pid+"','"+pcat+"', '"+pdesc+"', '"+price+"', '"+quantity+"', '"+sdate+"');";
+            String query = "insert into products values ('"+pid+"','"+pcat+"', '"+pdesc+"', '"+price+"', '"+quantity+"', '"+sdate+"', ' ');";
             con.createStatement().executeUpdate(query);
         }
         catch(Exception ex){
@@ -116,7 +116,7 @@ public class Exer3 {
     
     public void update_products(String pid, String pdesc, String price, String quantity, String sdate){
         try{
-            String query = "update products set pdesc='" + pdesc + "', price='" + price + "', quantity='" + quantity + "', sdate='" + sdate + "' where pid='" + pid + "'";
+            String query = "update products set pid='"+pid+"', pdesc='" + pdesc + "', price='" + price + "', quantity='" + quantity + "', sdate='" + sdate + "' where pid='" + pid + "'";
             con.createStatement().executeUpdate(query);
         }
         catch(Exception ex){
@@ -127,7 +127,14 @@ public class Exer3 {
     
     public void delete_products(String pid){
         try{
-            String query = "delete from products where pid='" + pid + "'";
+            String query;
+            if (pid.equals(" ")){
+                query = "delete from products where pid=' '";
+            }
+            else{
+                query = "delete from products where pid='" + pid + "'";
+            }
+            
             con.createStatement().executeUpdate(query);
         }
         catch(Exception ex){
