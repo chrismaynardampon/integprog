@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,7 +14,7 @@ namespace Ampon_Exer3
 {
     public partial class Form_Exer3 : Form
     {
-        Exer3 a = new Exer3();
+        public Exer3 a = new Exer3();
         public Form_Exer3()
         {
             InitializeComponent();
@@ -37,7 +37,6 @@ namespace Ampon_Exer3
 
                 foreach (string db in databases)
                 {
-                    Console.WriteLine("Database: " + db);
                     cbox_category.Items.Add(db);
                 }
             }
@@ -65,29 +64,13 @@ namespace Ampon_Exer3
             string price = txt_price.Text;
             string quantity = txt_quantity.Text;
             string sdate = txt_sdate.Text;
-
-            if (listView_products.SelectedItems.Count > 0)
-            {
-                a.update_products(pid, pdesc, price, quantity, sdate);
-
+            a.insert_products(pid, pcat, pdesc, price, quantity, sdate);
+            a.delete_products(" ");
                 if (!string.IsNullOrEmpty(pcat))
                 {
                     string[][] data = a.getData(pcat);
                     DisplayDataInListView(data);
-                    Console.WriteLine(data);
                 }
-            }
-            else
-            {
-                a.insert_products(pid, pcat, pdesc, price, quantity, sdate);
-
-                if (!string.IsNullOrEmpty(pcat))
-                {
-                    string[][] data = a.getData(pcat);
-                    DisplayDataInListView(data);
-                    Console.WriteLine(data);
-                }
-            }
         }
 
         private void cbox_category_SelectedIndexChanged(object sender, EventArgs e)
@@ -97,7 +80,10 @@ namespace Ampon_Exer3
             {
                 string[][] data = a.getData(selectedCategory);
                 DisplayDataInListView(data);
-                Console.WriteLine(data);
+            }
+            else {
+                string[][] data = a.getData();
+                DisplayDataInListView(data);
             }
         }
         private void DisplayDataInListView(string[][] data)
@@ -125,7 +111,6 @@ namespace Ampon_Exer3
             if (!string.IsNullOrEmpty(newCategory))
             {
                 a.insert_category(newCategory);
-                Console.WriteLine("New Category Added: " + newCategory);
                 LoadCategory();
             }
         }
@@ -136,7 +121,6 @@ namespace Ampon_Exer3
             {
                 ListViewItem selectedItem = listView_products.SelectedItems[0];
                 string pid = selectedItem.SubItems[0].Text;
-                string pcat = cbox_category.SelectedItem.ToString();
                 string pdesc = selectedItem.SubItems[1].Text;
                 string price = selectedItem.SubItems[2].Text;
                 string quantity = selectedItem.SubItems[3].Text;
@@ -159,18 +143,13 @@ namespace Ampon_Exer3
             string price = txt_price.Text;
             string quantity = txt_quantity.Text;
             string sdate = txt_sdate.Text;
-
-            if (listView_products.SelectedItems.Count > 0)
-            {           
                 a.update_products(pid, pdesc, price, quantity, sdate);
 
                 if (!string.IsNullOrEmpty(pcat))
                 {
                     string[][] data = a.getData(pcat);
                     DisplayDataInListView(data);
-                    Console.WriteLine(data);
                 }
-            }
         }
 
         private void btn_delete_Click(object sender, EventArgs e)
@@ -178,16 +157,14 @@ namespace Ampon_Exer3
             string pid = txt_pid.Text;
             string pcat = cbox_category.SelectedItem.ToString();
 
-            if (listView_products.SelectedItems.Count > 0)
-            {
                 a.delete_products(pid);
                 if (!string.IsNullOrEmpty(pcat))
                 {
                     string[][] data = a.getData(pcat);
                     DisplayDataInListView(data);
-                    Console.WriteLine(data);
+                    LoadCategory();
                 }
-            }
+            
         }
     }
 }
