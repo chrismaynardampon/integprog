@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -65,7 +65,7 @@ namespace Ampon_Exer3
             string quantity = txt_quantity.Text;
             string sdate = txt_sdate.Text;
             a.insert_products(pid, pcat, pdesc, price, quantity, sdate);
-            a.delete_products(" ");
+
                 if (!string.IsNullOrEmpty(pcat))
                 {
                     string[][] data = a.getData(pcat);
@@ -157,7 +157,7 @@ namespace Ampon_Exer3
             string pid = txt_pid.Text;
             string pcat = cbox_category.SelectedItem.ToString();
 
-                a.delete_products(pid);
+                a.delete_products(pid,pcat);
                 if (!string.IsNullOrEmpty(pcat))
                 {
                     string[][] data = a.getData(pcat);
