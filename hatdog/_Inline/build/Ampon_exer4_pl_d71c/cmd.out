@@ -1,0 +1,6 @@
+Products.java:7: error: cannot find symbol
+	Resultset rs;
+	^
+  symbol:   class Resultset
+  location: class Products
+1 error
