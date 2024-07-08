@@ -274,7 +274,7 @@ print qq(
 print $cgi->end_html;
 
 my $product = Products->new($pid, $pcat, $pdesc, $price, $quantity, $sdate);
-my $data = $product->selectAllProducts();
+my $data = $product->getData();
 if ($action eq 'Insert') {
     print $product->insertData();
     ShowData();
