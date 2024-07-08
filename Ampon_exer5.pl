@@ -41,6 +41,7 @@ private void initialized(){
 	}
 }
 
+
 public String get_database(){
         try{
             String query = "select distinct pcat from products;";
@@ -174,37 +175,105 @@ my $quantity = $cgi->param('quantity') || '';
 my $sdate = $cgi->param('sdate') || '';
 
 print $cgi->header();
-print $cgi->start_html('Exer 5');
+print $cgi->start_html(
+    -title => 'Exer 5',
+    -style => {
+        -code => '
+            body {
+                font-family: Arial, sans-serif;
+                margin: 20px;
+            }
+            form {
+                margin-bottom: 20px;
+            }
+            input[type="text"], select {
+                margin-bottom: 10px;
+                padding: 8px;
+                width: 300px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+            }
+            input[type="submit"] {
+                padding: 10px 20px;
+                background-color: #4CAF50;
+                color: white;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+            }
+            input[type="submit"]:hover {
+                background-color: #45a049;
+            }
+            table {
+                width: 100%;
+                border-collapse: collapse;
+            }
+            table, th, td {
+                border: 1px solid black;
+            }
+            th, td {
+                padding: 12px;
+                text-align: left;
+            }
+            th {
+                background-color: #f2f2f2;
+            }
+        '
+    }
+);
 print $cgi->h1('Exer 5');
+
+my $product = Products->new();
+my $categories_string = $product->get_database();
+my @categories = split('/', $categories_string);
 
 print qq(
     <form method="POST" action="">
         Product ID: <input type="text" name="pid" value="$pid"><br>
-        Product Category: <input type="text" name="pcat" value="$pcat"><br>
+        Product Category: 
+        <select name="pcat" id="categoryDropdown">
+            <option value="">Select Category</option>
+);
+
+foreach my $category (@categories) {
+    print qq(<option value="$category">$category</option>);
+}
+
+print qq(
+        </select><br>
         Product Description: <input type="text" name="pdesc" value="$pdesc"><br>
         Price: <input type="text" name="price" value="$price"><br>
         Quantity: <input type="text" name="quantity" value="$quantity"><br>
         Stock-In Date: <input type="text" name="sdate" value="$sdate"><br>
-	<input type="submit" name="action" value="Show Data">
+        <input type="submit" name="action" value="Show Data">
         <input type="submit" name="action" value="Insert">
         <input type="submit" name="action" value="Update">
         <input type="submit" name="action" value="Delete">
     </form>
+
+    <script>
+        document.getElementById('categoryDropdown').value = "$pcat";
+    </script>
 );
 
 print $cgi->end_html;
 
+my $product = Products->new($pid, $pcat, $pdesc, $price, $quantity, $sdate);
+
 if ($action eq 'Insert') {
-    my $product = Products->new($pid, $pcat, $pdesc, $price, $quantity, $sdate);
     print $product->insertData();
+    ShowData();
 } elsif ($action eq 'Update') {
-    my $product = Products->new($pid, $pcat, $pdesc, $price, $quantity, $sdate);
     print $product->updateData();
+    ShowData();
 } elsif ($action eq 'Delete') {
-    my $product = Products->new($pid, $pcat);
     print $product->deleteData();
+    ShowData();
 } elsif ($action eq 'Show Data') {
-    my $product = Products->new();
+    ShowData();
+}
+
+sub ShowData {
     my $data = $product->selectAllProducts();
     print "<table border='1'>";
     print "<tr><th>Product ID</th><th>Category</th><th>Description</th><th>Price</th><th>Quantity</th><th>Stock-In Date</th></tr>";
