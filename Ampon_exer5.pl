@@ -129,6 +129,9 @@ public void updateData(){
 }
 
 public void deleteData(){
+	if (this.pid == ""){
+	this.pid = " ";
+}
 	try
 	{
 		String query = "delete from products where pid='" + this.pid + "' and pcat='"+this.pcat+"'";
@@ -288,6 +291,7 @@ if ($action eq 'Insert') {
     ShowData();
 } elsif ($action eq 'Add Category') {
     print $product->insert_category($pcat);
+    $data = $product->getData($pcat);
     ShowData();
 } elsif ($action eq 'Show Category') {
     $data = $product->getData($pcat);
