@@ -3,7 +3,7 @@ use strict;
 use warnings;
 use CGI qw(:standard);
 
-use Inline Java => <<'END',CLASSPATH => 'C:\webserver\mysql-connector-java-5.1.47.jar', AUTOSTUDY => 1;
+use Inline Java => <<'END',CLASSPATH => 'A:\ADDU\3rd Year\exer4\mysql-connector-java-5.1.47.jar', AUTOSTUDY => 1;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -129,9 +129,7 @@ public void updateData(){
 }
 
 public void deleteData(){
-	if (this.pid == ""){
-	this.pid = " ";
-}
+	if (this.pid == null || this.pid.isEmpty()){this.pid = " ";}
 	try
 	{
 		String query = "delete from products where pid='" + this.pid + "' and pcat='"+this.pcat+"'";
@@ -198,16 +196,20 @@ print $cgi->start_html(
                 border: 1px solid #ccc;
                 border-radius: 4px;
             }
-            input[type="submit"], input[type="button"] {
+	    input[type="submit"]:hover, input[type="button"]:hover {
+                background-color: #45a049;
+            }
+            .button {
                 padding: 10px 20px;
-                background-color: #4CAF50;
+                background-color: gray;
                 color: white;
                 border: none;
                 border-radius: 4px;
                 cursor: pointer;
+                margin-right: 10px;
             }
-            input[type="submit"]:hover, input[type="button"]:hover {
-                background-color: #45a049;
+            .button.selected {
+                background-color: #4CAF50;
             }
             table {
                 width: 100%;
@@ -224,7 +226,24 @@ print $cgi->start_html(
                 background-color: #f2f2f2;
             }
         '
-    }
+    },
+    -script => [
+        {
+            -code => '
+                document.addEventListener("DOMContentLoaded", function() {
+                    var buttons = document.querySelectorAll(".button");
+                    buttons.forEach(function(button) {
+                        button.addEventListener("click", function() {
+                            buttons.forEach(function(btn) {
+                                btn.classList.remove("selected");
+                            });
+                            button.classList.add("selected");
+                        });
+                    });
+                });
+            '
+        }
+    ]
 );
 
 print $cgi->h1('Exer 5');
@@ -260,12 +279,12 @@ print qq(
         Price: <input type="text" name="price" value="$price"><br>
         Quantity: <input type="text" name="quantity" value="$quantity"><br>
         Stock-In Date: <input type="text" name="sdate" value="$sdate"><br>
-        <input type="submit" name="action" value="Show Data">
-        <input type="submit" name="action" value="Insert">
-        <input type="submit" name="action" value="Update">
-        <input type="submit" name="action" value="Delete">
-	<input type="submit" name="action" value="Add Category">
-	<input type="submit" name="action" value="Show Category">
+        <input type="submit" class="button" name="action" value="Show Data">
+        <input type="submit" class="button" name="action" value="Insert">
+        <input type="submit" class="button" name="action" value="Update">
+        <input type="submit" class="button" name="action" value="Delete">
+	<input type="submit" class="button" name="action" value="Add Category">
+	<input type="submit" class="button" name="action" value="Show Category">
     </form>
 
     <script>
@@ -280,12 +299,14 @@ my $product = Products->new($pid, $pcat, $pdesc, $price, $quantity, $sdate);
 my $data = $product->getData();
 if ($action eq 'Insert') {
     print $product->insertData();
+    $data = $product->getData($pcat);
     ShowData();
 } elsif ($action eq 'Update') {
     print $product->updateData();
     ShowData();
 } elsif ($action eq 'Delete') {
     print $product->deleteData();
+    $data = $product->getData($pcat);
     ShowData();
 } elsif ($action eq 'Show Data') {
     ShowData();
