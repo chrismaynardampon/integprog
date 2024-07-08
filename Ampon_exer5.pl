@@ -64,6 +64,7 @@ public String get_database(){
     }
 
     public String[][] getData(String category){
+	
         List<String[]> products = new ArrayList<>();
         try{
             String query;
@@ -85,6 +86,7 @@ public String get_database(){
         }
         catch(Exception e){
             System.out.println("Error:" + e);
+	return null;
         }
         return products.toArray(new String[0][0]);
     }
@@ -143,16 +145,15 @@ public void deleteData(){
 public String[][] selectAllProducts() {
         List<String[]> products = new ArrayList<>();
         try {
-            String query = "select * from products";
+            String query = "select pid,pdesc,price,quantity,sdate from products";
             rs = st.executeQuery(query);
             while (rs.next()) {
                 String[] product = new String[6];
                 product[0] = rs.getString("pid");
-                product[1] = rs.getString("pcat");
-                product[2] = rs.getString("pdesc");
-                product[3] = rs.getString("price");
-                product[4] = rs.getString("quantity");
-                product[5] = rs.getString("sdate");
+                product[1] = rs.getString("pdesc");
+                product[2] = rs.getString("price");
+                product[3] = rs.getString("quantity");
+                product[4] = rs.getString("sdate");
                 products.add(product);
             }
         } catch (SQLException ex) {
@@ -163,6 +164,7 @@ public String[][] selectAllProducts() {
 
 }
 END
+
 
 my $cgi = CGI->new;
 
@@ -186,14 +188,14 @@ print $cgi->start_html(
             form {
                 margin-bottom: 20px;
             }
-            input[type="text"], select {
+            input[type="text"], select, datalist {
                 margin-bottom: 10px;
                 padding: 8px;
                 width: 300px;
                 border: 1px solid #ccc;
                 border-radius: 4px;
             }
-            input[type="submit"] {
+            input[type="submit"], input[type="button"] {
                 padding: 10px 20px;
                 background-color: #4CAF50;
                 color: white;
@@ -201,7 +203,7 @@ print $cgi->start_html(
                 border-radius: 4px;
                 cursor: pointer;
             }
-            input[type="submit"]:hover {
+            input[type="submit"]:hover, input[type="button"]:hover {
                 background-color: #45a049;
             }
             table {
@@ -221,26 +223,36 @@ print $cgi->start_html(
         '
     }
 );
+
 print $cgi->h1('Exer 5');
 
 my $product = Products->new();
 my $categories_string = $product->get_database();
 my @categories = split('/', $categories_string);
 
+# Check if the new category form was submitted
+my $new_category = $cgi->param('new_category');
+if ($new_category) {
+    # Handle adding new category to the database
+    $product->insert_category($new_category);
+    # Set $pcat to the newly added category
+    $pcat = $new_category;
+}
+
 print qq(
     <form method="POST" action="">
         Product ID: <input type="text" name="pid" value="$pid"><br>
         Product Category: 
-        <select name="pcat" id="categoryDropdown">
-            <option value="">Select Category</option>
+        <input list="categoriesList" name="pcat" value="$pcat">
+        <datalist id="categoriesList">
 );
 
 foreach my $category (@categories) {
-    print qq(<option value="$category">$category</option>);
+    print qq(<option value="$category">);
 }
 
 print qq(
-        </select><br>
+        </datalist><br>
         Product Description: <input type="text" name="pdesc" value="$pdesc"><br>
         Price: <input type="text" name="price" value="$price"><br>
         Quantity: <input type="text" name="quantity" value="$quantity"><br>
@@ -249,17 +261,20 @@ print qq(
         <input type="submit" name="action" value="Insert">
         <input type="submit" name="action" value="Update">
         <input type="submit" name="action" value="Delete">
+	<input type="submit" name="action" value="Add Category">
+	<input type="submit" name="action" value="Show Category">
     </form>
 
     <script>
-        document.getElementById('categoryDropdown').value = "$pcat";
+        // Set the value of the input based on $pcat
+        document.getElementsByName('pcat')[0].value = "$pcat";
     </script>
 );
 
 print $cgi->end_html;
 
 my $product = Products->new($pid, $pcat, $pdesc, $price, $quantity, $sdate);
-
+my $data = $product->selectAllProducts();
 if ($action eq 'Insert') {
     print $product->insertData();
     ShowData();
@@ -271,12 +286,17 @@ if ($action eq 'Insert') {
     ShowData();
 } elsif ($action eq 'Show Data') {
     ShowData();
+} elsif ($action eq 'Add Category') {
+    print $product->insert_category($pcat);
+    ShowData();
+} elsif ($action eq 'Show Category') {
+    $data = $product->getData($pcat);
+    ShowData();
 }
 
 sub ShowData {
-    my $data = $product->selectAllProducts();
-    print "<table border='1'>";
-    print "<tr><th>Product ID</th><th>Category</th><th>Description</th><th>Price</th><th>Quantity</th><th>Stock-In Date</th></tr>";
+    print "<table>";
+    print "<tr><th>Product ID</th><th>Description</th><th>Price</th><th>Quantity</th><th>Stock-In Date</th></tr>";
     foreach my $row (@$data) {
         print "<tr>";
         foreach my $col (@$row) {
