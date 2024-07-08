@@ -3,7 +3,7 @@ use strict;
 use warnings;
 use CGI qw(:standard);
 
-use Inline Java => <<'END',CLASSPATH => 'A:\ADDU\3rd Year\exer4\mysql-connector-java-5.1.47.jar', AUTOSTUDY => 1;
+use Inline Java => <<'END',CLASSPATH => 'C:\webserver\mysql-connector-java-5.1.47.jar', AUTOSTUDY => 1;
 
 import java.sql.*;
 import java.util.ArrayList;
