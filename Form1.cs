@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,7 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
 using exer3;
+using IronPython.Hosting;
+using Microsoft.Scripting.Hosting;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Ampon_Exer3
@@ -21,6 +24,7 @@ namespace Ampon_Exer3
             LoadCategory();
             string[][] data = a.getData();
             DisplayDataInListView(data);
+            xmlPython();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -70,7 +74,8 @@ namespace Ampon_Exer3
                 {
                     string[][] data = a.getData(pcat);
                     DisplayDataInListView(data);
-                }
+                    xmlPython();
+            }
         }
 
         private void cbox_category_SelectedIndexChanged(object sender, EventArgs e)
@@ -112,6 +117,7 @@ namespace Ampon_Exer3
             {
                 a.insert_category(newCategory);
                 LoadCategory();
+                xmlPython();
             }
         }
 
@@ -149,7 +155,8 @@ namespace Ampon_Exer3
                 {
                     string[][] data = a.getData(pcat);
                     DisplayDataInListView(data);
-                }
+                    xmlPython();
+            }
         }
 
         private void btn_delete_Click(object sender, EventArgs e)
@@ -163,8 +170,64 @@ namespace Ampon_Exer3
                     string[][] data = a.getData(pcat);
                     DisplayDataInListView(data);
                     LoadCategory();
+                    xmlPython();
                 }
             
+        }
+
+        private void xmlPython() {
+            ScriptEngine engine = Python.CreateEngine();
+            ScriptScope scope = engine.CreateScope();
+            string pythonScript = @"
+import clr
+clr.AddReference('MySql.Data')
+from MySql.Data.MySqlClient import MySqlConnection, MySqlCommand
+
+def fetch_data():
+    conn_str = 'server=localhost;user=root;database=testdb;port=3306;password=root'
+    conn = MySqlConnection(conn_str)
+    conn.Open()
+    query = '''
+    SELECT CONCAT(
+        '<products>', 
+        GROUP_CONCAT(
+            CONCAT(
+                '<product>',
+                    '<pid>', pid, '</pid>',
+                    '<pcategory>', pcat, '</pcategory>',
+                    '<pdesc>', pdesc, '</pdesc>',
+                    '<price>', price, '</price>',
+                    '<stock_quantity>', quantity, '</stock_quantity>',
+                    '<stock_in_date>', sdate, '</stock_in_date>',
+                    '<picture>', picture, '</picture>',
+                '</product>'
+            ) SEPARATOR ''
+        ),
+        '</products>'
+    ) AS xmloutput 
+    FROM products;
+    '''
+    cmd = MySqlCommand('SET SESSION group_concat_max_len = 10000;', conn)
+    cmd.ExecuteNonQuery()
+    cmd = MySqlCommand(query, conn)
+    reader = cmd.ExecuteReader()
+    result = ''
+    while reader.Read():
+        result = reader.GetString(0)
+    reader.Close()
+    conn.Close()
+    return result
+
+data = fetch_data()
+";
+            ScriptSource source = engine.CreateScriptSourceFromString(pythonScript);
+            source.Execute(scope);
+
+            dynamic data = scope.GetVariable("data");
+
+            XmlDocument document = new XmlDocument();
+            document.LoadXml(data);
+            document.Save(@"C:\webserver\products.xml");
         }
     }
 }
